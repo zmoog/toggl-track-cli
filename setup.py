@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-VERSION = "0.1"
+VERSION = "0.1.0"
 
 
 def get_long_description():
@@ -29,7 +29,7 @@ setup(
     packages=["toggl_track"],
     entry_points="""
         [console_scripts]
-        toggl-track=toggl_track.cli:cli
+        tgl=toggl_track.cli:cli
     """,
     install_requires=["click"],
     extras_require={

@@ -29,7 +29,7 @@ setup(
     packages=["toggl_track"],
     entry_points="""
         [console_scripts]
-        toggl-track=toggl_track.cli:cli
+        tgl=toggl_track.cli:cli
     """,
     install_requires=["click"],
     extras_require={

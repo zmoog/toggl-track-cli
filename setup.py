@@ -31,7 +31,13 @@ setup(
         [console_scripts]
         tgl=toggl_track.cli:cli
     """,
-    install_requires=["click", "rich"],
+    install_requires=[
+        "click",
+        "humanize",
+        "pydantic",
+        "requests",
+        "rich",
+        ],
     extras_require={
         "test": ["pytest"]
     },

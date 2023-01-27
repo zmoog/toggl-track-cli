@@ -5,6 +5,11 @@ from click.testing import CliRunner
 from toggl_track.cli import cli
 
 
+env = {
+    "TOGGL_API_TOKEN": "1234567890abcdef1234567890abcdef",
+}
+
+
 def save_result(result: click.testing.Result):
     """Saves the result object to the filesystem for inspection."""
     with open("/tmp/output.txt", "w") as f:
@@ -16,7 +21,11 @@ def save_result(result: click.testing.Result):
 def test_entries():
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cli, ["entries", "list", "--start-date", "2023-01-26", "--end-date", "2023-01-27"])
+        result = runner.invoke(
+            cli,
+            ["entries", "list", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
+            env=env,
+        )
         assert result.exit_code == 0
         assert (
             result.output

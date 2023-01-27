@@ -1,12 +1,26 @@
-import urllib
 import os
+import urllib
 from datetime import datetime
-from typing import List
+from typing import Optional, List
 
 import requests
-from pydantic import parse_raw_as
+from pydantic import BaseModel, parse_raw_as
+from typing import List
 
-from .model import TimeEntry
+
+class TimeEntry(BaseModel):
+    id: int
+    workspace_id: int
+    user_id: int
+    project_id: int
+    task_id: Optional[int]
+    billable: bool
+    at: datetime
+    description: str
+    start: datetime
+    stop: Optional[datetime]
+    duration: int
+    tags: Optional[List[str]]
 
 
 class TimeEntries(object):

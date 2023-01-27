@@ -39,7 +39,10 @@ setup(
         "rich",
         ],
     extras_require={
-        "test": ["pytest"]
+        "test": [
+            "pytest",
+            "pytest-recording",
+            ]
     },
     python_requires=">=3.7",
 )

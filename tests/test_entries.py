@@ -6,14 +6,8 @@ from toggl_track.cli import cli
 
 
 env = {
-    "TOGGL_API_TOKEN": "1234567890abcdef1234567890abcdef",
+    "TOGGL_API_TOKEN": "1234567890abcdef1234567890abcdef", # fake token for testing
 }
-
-
-def save_result(result: click.testing.Result):
-    """Saves the result object to the filesystem for inspection."""
-    with open("/tmp/output.txt", "w") as f:
-        f.write(result.output)
 
 
 @pytest.mark.vcr

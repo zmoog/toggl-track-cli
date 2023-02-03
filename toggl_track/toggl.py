@@ -50,16 +50,12 @@ class TimeEntries(object):
             end_date=end_date.isoformat() + "Z",
         )
 
-        # print(params)
-
         url = (
             "https://api.track.toggl.com/api/v9/me/time_entries?"
             + urllib.parse.urlencode(params)
         )
 
         resp = requests.get(url, auth=(self.api_token, "api_token"))
-        # print(resp.text)
-
         if resp.status_code != 200:
             raise Exception(resp.text)
 

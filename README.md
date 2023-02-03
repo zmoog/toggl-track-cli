@@ -58,3 +58,7 @@ Now install the dependencies and test dependencies:
 To run the tests:
 
     pytest
+
+If you need to send other requests to Toggl API, you can capture responses using:
+
+   pytest --record-mode=once

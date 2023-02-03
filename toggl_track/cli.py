@@ -48,8 +48,10 @@ def list_entries(start_date: datetime, end_date: datetime):
 
     client = TimeEntries.from_environment()
 
-    click.echo(TimeEntriesListResult(
-        client.list(start_date, end_date))
+    click.echo(
+        TimeEntriesListResult(
+            client.list(start_date, end_date)
+        )
     )
 
 

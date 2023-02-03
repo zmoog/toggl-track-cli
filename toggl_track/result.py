@@ -1,8 +1,8 @@
 import io
+import datetime as dt
 from itertools import groupby
 from typing import Any, List
 
-from humanize import naturaldelta
 from rich import box
 from rich.console import Console
 from rich.table import Table
@@ -36,7 +36,7 @@ class TimeEntriesListResult(object):
                 e.description,
                 e.start.strftime("%I:%M %p"),
                 "" if not e.stop else e.stop.strftime("%I:%M %p"),
-                "" if e.duration < 0 else naturaldelta(e.duration),
+                format_duration(e.duration),
                 "" if not e.tags else "".join(e.tags),
             )
 
@@ -45,6 +45,10 @@ class TimeEntriesListResult(object):
         console.print(table)
 
         return console.file.getvalue()
+
+    def ndjson(self) -> str:
+        """Returns a newline-delimited JSON string."""
+        return "\n".join([e.json() for e in self.entries])
 
 
 class GroupByCriterion(object):
@@ -96,7 +100,7 @@ class TimeEntriesGroupByResult(object):
             # total_duration = sum([e.duration for e in g if e.duration > 0])
             table.add_row(
                 k,
-                "-" if g < 0 else naturaldelta(g),
+                format_duration(g),
             )
 
         # turn table into a string using the Console
@@ -104,3 +108,17 @@ class TimeEntriesGroupByResult(object):
         console.print(table)
 
         return console.file.getvalue()
+
+
+def format_duration(duration: int) -> str:
+    """Formats a duration in seconds as a string in the format HH:MM"""
+
+    if duration < 0:  # happens when a time entry is still running
+        return "-"
+    
+    # credits: 'inspired' by timedelta.__str__
+    mm, _ = divmod(duration, 60)
+    hh, mm = divmod(mm, 60)
+    s = "%d:%02d" % (hh, mm)
+    
+    return s

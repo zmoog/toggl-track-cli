@@ -14,7 +14,7 @@ def vcr_config():
 @pytest.fixture()
 def save_to_tmp():
     """Saves the result object to the filesystem for inspection."""
-    def wrapper(output: Any):
-        with open("/tmp/output.txt", "w") as f:
+    def wrapper(output: Any, name: str = "result"):
+        with open(f"/tmp/{name}.out.txt", "w") as f:
             f.write(str(output))
     return wrapper

@@ -38,13 +38,13 @@ def test_list():
                blank and                                                        
                adjust for                                                       
                timeStamp                                                        
-  2023-01-26   Community: Fix    09:45 PM   09:45 PM   0:00                     
+  2023-02-03   Community: Fix    09:45 PM   09:45 PM   0:00       type:support  
                parsing error                                                    
                client port is                                                   
                blank and                                                        
                adjust for                                                       
                timeStamp                                                        
-  2023-01-26   Community: Fix    09:45 PM   09:45 PM   0:00                     
+  2023-02-03   Community: Fix    09:45 PM   09:45 PM   0:00       type:support  
                parsing error                                                    
                client port is                                                   
                blank and                                                        

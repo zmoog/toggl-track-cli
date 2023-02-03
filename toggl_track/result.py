@@ -24,6 +24,7 @@ class TimeEntriesListResult(object):
 
         table = Table(title="Time Entries", box=box.SIMPLE)
         table.add_column("At")
+        # table.add_column("Project")
         table.add_column("Description")
         table.add_column("Start")
         table.add_column("Stop")
@@ -33,6 +34,7 @@ class TimeEntriesListResult(object):
         for e in self.entries:
             table.add_row(
                 e.at.strftime("%Y-%m-%d"),
+                # str(e.project_id),
                 e.description,
                 e.start.strftime("%I:%M %p"),
                 "" if not e.stop else e.stop.strftime("%I:%M %p"),

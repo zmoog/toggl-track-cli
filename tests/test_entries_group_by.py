@@ -36,3 +36,29 @@ def test_group_by_tags():
 """
         )
         
+
+@pytest.mark.vcr
+@pytest.mark.block_network
+def test_group_by_tags_and_filter():
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(
+            cli,
+            ["entries", "--project-id", "178435728", "group-by", "--field", "tags", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
+            env=env,
+        )
+        assert result.exit_code == 0
+        assert (
+            result.output
+            == """       Time Entries        
+                           
+  tags           Duration  
+ ───────────────────────── 
+  type:support   5:44      
+  type:sync      3:00      
+  type:meeting   2:04      
+  type:goal      0:35      
+                           
+
+"""
+        )

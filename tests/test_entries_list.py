@@ -5,7 +5,7 @@ from toggl_track.cli import cli
 
 
 env = {
-    # "TOGGL_API_TOKEN": "1234567890abcdef1234567890abcdef", # fake token for testing
+    "TOGGL_API_TOKEN": "1234567890abcdef1234567890abcdef", # fake token for testing
 }
 
 

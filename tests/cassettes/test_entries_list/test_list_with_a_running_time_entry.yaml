@@ -1,0 +1,77 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.track.toggl.com/api/v9/me/time_entries?start_date=2023-02-03T00%3A00%3A00Z&end_date=2023-02-05T00%3A00%3A00Z
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEA82YS46jRhiAr1JiG7dUDx5VteskijSLSFG6VxmNWtWmGjPGgKhiHCfKDRIp62x6
+        lQvkZH2E/NhgXGbkpgmORmJhY2SK7/tfxftfvTT2JOWM0IgRjhfetqjWplRL/dD8QjgJMOELr6yK
+        j3pp9ydFgKkIQ7rwrDLr/am8zrKF95hmmXrMtCefVGb0wjNWVdaTHsWU3WB6g/17HEgWScq+wlhi
+        7DXXFKUnD38Q15WyaZF78oaEUeBzgX228GJtllVaHn7xbJEk2Y2t1HItUZqbNFlZA39kVWI8+f7D
+        /hOsqv0C/1nk2c6TtqphSerV9ejqk64eYp1pq+OH5vrD4moDp/e4QkoYg3XVzretC6z51pH6bdGD
+        xtj3GRAdAZpE3GdBROHqN5Nm9xSDPon9M9K9DLiESixkEP0E+Hr2YUQG0L8pNps6T+1OotssK7ao
+        VJVJ8wQVT+jdD59CpOK40sZoA0rgSLSxqExLnaW57uV4dldqaeqyLCAwHFWE4ojjEMPJi8r6VfcP
+        NqOyI/MTZ1gw7lMyyhnl2CeCQSZNUEaEhGOQHI6y1qqrjAXN8tw8eXn+4x/0bZrnuuoFOMhHoB7E
+        0IyoO1SnpHkIeR+NIn00NQ01b1AHvA+ifR06RQ3ZEwRQHF3UkPsg10VtdvmyZ9wGeXPOwd1GOHkd
+        e3fnfnEzYj9yO+UeMQz5N4p7p20a9lD6cND+yT6HfW/GxR4EIjzH/vL81+/oblVbC1UmQWuo+ehR
+        263WOVoVG41UHqPtSlkNFb3340gZJeMsUmaU0cF0XBBBRDDKxdHlZBnQhS91CNL6cmUwAS3JTYHb
+        skR3ACZdapQVSdMGrE4O7VwiWxU1DAZmVRQ2TXKU1ctU5eUOpcbU+qR7H3InKVT22dxhI3QNImxG
+        XUfep75CHrGmJly9o4MMSiSOLiUPPH2j1PVFCIPcdoV9SR29iTI3EK/tLAgFDSCIr+8skCR4pc+0
+        Wl1nTGBxwdl36c/HGUxXVVGhZZbqHIYumKwgrdBjpvL1vgKq+GMN09gTXGPTjb6zalP21XCWkWwY
+        mdcW6Isw4uMa1jFppxVJv9mw+BcHhdaxK5BSMRgUTpPul7rS6A6qIQzM3xdxnUG/qu0KHKbL/S7o
+        ATZdS5ipobfBdsSqNDPoXVMv55Y3CNFryyOB4D5E94js22+hoghMT5mnoVpCabk4bbR6XXeEhuFg
+        3PixMCrPVU//rYPEIJJm5NxxOm1MGAtM6CjM/y1HYBNJIYgu5kirwuUcYu5fKHK3X06ODCJpRndH
+        +L08KgTz6f8yBWLeFDhCLkwVrV/hyqOcD8bAuXdC3Z37xV2bOydcROMmg+71zqTahKOmNpGwf7LB
+        TgjMwFWMuNgZ7JDPc2bOd2Lsvrtvv7QZoXfQTmM9iijB8M5pRD/oNkzTmIeyifZL/aDTcsbcDwd1
+        6uX57z/R15VW6ydl7OSu0N3wKrA7Wg7sEJPoDc132pteiCIYe4kMcP9gwwBvfbiwCcbQtNzdyswB
+        PoiDawT4h38BGti9z18XAAA=
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 04 Feb 2023 07:01:40 GMT
+      Instance:
+      - time-public-api2
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-ID:
+      - 2e80bfb074c97169052b45545f846cd1
+      X-Service-Level:
+      - GREEN
+      X-Toggl-Request-Id:
+      - 2e80bfb074c97169052b45545f846cd1
+      X-We-are-hiring:
+      - https://toggl.com/jobs/
+    status:
+      code: 200
+      message: OK
+version: 1

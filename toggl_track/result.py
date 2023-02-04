@@ -23,7 +23,7 @@ class TimeEntriesListResult(object):
             return "No time entries found."
 
         # calculate total duration of all entries for the footer
-        total = sum(e.duration for e in self.entries)
+        total = sum(e.duration for e in self.entries if e.duration > 0)
 
         table = Table(title="Time Entries", box=box.SIMPLE)
         table.add_column("At")
@@ -100,7 +100,7 @@ class TimeEntriesGroupByResult(object):
             return "No time entries found."
 
         # calculate total duration of all entries for the footer
-        total = sum([e[1] for e in self.entries])
+        total = sum([e[1] for e in self.entries if e[1] > 0])
 
         table = Table(title="Time Entries", box=box.SIMPLE)
         table.add_column(self.key_func.name, "Total")

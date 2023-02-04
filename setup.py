@@ -33,7 +33,6 @@ setup(
     """,
     install_requires=[
         "click",
-        "humanize",
         "pydantic",
         "requests",
         "rich",

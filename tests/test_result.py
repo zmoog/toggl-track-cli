@@ -11,7 +11,7 @@ def test_empty_timeentrieslistresult_as_str():
     assert str(result) == "No time entries found."
 
 
-def test_empty_timeentrieslistresult_as_str():
+def test_empty_timeentrieslistresult_as_str(save_to_tmp):
     entries = [TimeEntry(
         id=1,
         workspace_id=1,
@@ -28,10 +28,14 @@ def test_empty_timeentrieslistresult_as_str():
     )]
     result = TimeEntriesListResult(entries)
 
-    assert str(result) == """                                 Time Entries                                 
-                                                                              
-  At           Description   Start      Stop       Duration     Tags          
- ──────────────────────────────────────────────────────────────────────────── 
-  2021-01-25   community:    11:04 PM   11:27 PM   22 minutes   type:support  
-                                                                              
+    save_to_tmp(result, "test_empty_timeentrieslistresult_as_str")
+
+    assert str(result) == """                                Time Entries                                
+                                                                            
+  At           Description   Start      Stop       Duration   Tags          
+ ────────────────────────────────────────────────────────────────────────── 
+  2021-01-25   community:    11:04 PM   11:27 PM   0:22       type:support  
+ ────────────────────────────────────────────────────────────────────────── 
+                                        Total      0:22                     
+                                                                            
 """

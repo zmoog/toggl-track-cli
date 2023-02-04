@@ -18,22 +18,57 @@ Install this tool using `pip`:
 For listing the time entries in the last 24 hours, run:
 
     $ tgl entries list
-                                                                    Time Entries                                                                     
-                                                                                                                                                     
-      At           Description                                                                  Start      Stop       Duration         Tags          
-     ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-      2023-01-28   toggl-track: list time entries                                               04:33 AM                                         
-      2023-01-27   ESF: telemetry                                                               05:23 PM   07:19 PM   an hour          type:goal     
-      2023-01-27   ESF: telemetry                                                               03:28 PM   05:00 PM   an hour          type:goal     
-      2023-01-27   Community: Fix parsing error client port is blank and adjust for timeStamp   03:13 PM   03:28 PM   15 minutes       type:support  
-      2023-01-27   Community: Azure Signin Module authentication_processing_details Issue       02:47 PM   03:13 PM   25 minutes       type:support  
-      2023-01-27   sync                                                                         02:31 PM   02:47 PM   16 minutes       type:sync     
-      2023-01-27   🍜 Lunch                                                                     01:11 PM   02:31 PM   an hour                    
-      2023-01-27   Community: Fix parsing error client port is blank and adjust for timeStamp   12:19 PM   12:29 PM   10 minutes       type:support  
-      2023-01-27   Community: Fix parsing error client port is blank and adjust for timeStamp   11:54 AM   12:06 PM   11 minutes       type:support  
-      2023-01-27   Community: Azure Signin Module authentication_processing_details Issue       09:30 AM   11:54 AM   2 hours          type:support  
-      2023-01-27   sync                                                                         08:34 AM   09:30 AM   56 minutes       type:sync     
-      2023-01-27   toggl-track: list time entries                                               07:04 AM   08:34 AM   an hour                    
+                                                                Time Entries
+
+    At           Description                                                                  Start      Stop       Duration   Tags
+    ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    2023-02-04   toggl-track: insights                                                        05:37 AM              -
+    2023-02-03   Community: Allow parsing of IPv6 addresses in ingest pipeline                08:18 PM   10:09 PM   1:51       type:support
+    2023-02-03   🍲 Dinner                                                                    07:19 PM   08:18 PM   0:58
+    2023-02-03   sync                                                                         06:19 PM   06:55 PM   0:35       type:sync
+    2023-02-03   🚌 Shuttling kids between home and whatever                                  04:46 PM   06:19 PM   1:33
+    2023-02-03   App Service logs integration: troubleshootign lucianpy issues                04:40 PM   04:46 PM   0:06       type:goal
+    2023-02-03   Community: Allow parsing of IPv6 addresses in ingest pipeline                04:21 PM   04:40 PM   0:18       type:support
+    2023-02-03   Community: Fix parsing error client port is blank and adjust for timeStamp   03:15 PM   04:21 PM   1:05       type:support
+    2023-02-03   Community: Azure Signin Module authentication_processing_details Issue       02:37 PM   03:15 PM   0:38       type:support
+    2023-02-03   Rosanna                                                                      11:06 AM   02:37 PM   3:31
+    2023-02-03   Community: Azure Signin Module authentication_processing_details Issue       09:25 AM   11:06 AM   1:41       type:support
+    2023-02-03   sync                                                                         08:37 AM   09:25 AM   0:48       type:sync
+    ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                        Total      13:08
+
+Now you can also filter time entries by project ID:
+
+    $ tgl entries --project-id 178435728 list
+                                                                Time Entries
+
+    At           Description                                                                  Start      Stop       Duration   Tags
+    ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    2023-02-03   Community: Allow parsing of IPv6 addresses in ingest pipeline                08:18 PM   10:09 PM   1:51       type:support
+    2023-02-03   sync                                                                         06:19 PM   06:55 PM   0:35       type:sync
+    2023-02-03   App Service logs integration: troubleshootign lucianpy issues                04:40 PM   04:46 PM   0:06       type:goal
+    2023-02-03   Community: Allow parsing of IPv6 addresses in ingest pipeline                04:21 PM   04:40 PM   0:18       type:support
+    2023-02-03   Community: Fix parsing error client port is blank and adjust for timeStamp   03:15 PM   04:21 PM   1:05       type:support
+    2023-02-03   Community: Azure Signin Module authentication_processing_details Issue       02:37 PM   03:15 PM   0:38       type:support
+    2023-02-03   Community: Azure Signin Module authentication_processing_details Issue       09:25 AM   11:06 AM   1:41       type:support
+    2023-02-03   sync                                                                         08:37 AM   09:25 AM   0:48       type:sync
+    ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                        Total      7:05
+
+For grouping time entries by tags and sum up the totals, run:
+
+    $ tgl entries --project-id 178435728 group-by --field tags --start-date 2023-02-01
+        Time Entries
+
+    tags           Duration
+    ─────────────────────────
+    type:support   7:13
+    type:goal      5:10
+    type:meeting   4:29
+    type:sync      3:38
+    type:hr        0:09
+    ─────────────────────────
+    Total          20:40
 
 For help, run:
 
@@ -58,3 +93,7 @@ Now install the dependencies and test dependencies:
 To run the tests:
 
     pytest
+
+If you need to send other requests to Toggl API, you can capture responses using:
+
+   pytest --record-mode=once

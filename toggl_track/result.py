@@ -22,13 +22,15 @@ class TimeEntriesListResult(object):
         if not self.entries:
             return "No time entries found."
 
+        # calculate total duration of all entries for the footer
+        total = sum(e.duration for e in self.entries)
+
         table = Table(title="Time Entries", box=box.SIMPLE)
         table.add_column("At")
-        # table.add_column("Project")
         table.add_column("Description")
         table.add_column("Start")
-        table.add_column("Stop")
-        table.add_column("Duration")
+        table.add_column("Stop", "Total")
+        table.add_column("Duration", format_duration(total))
         table.add_column("Tags")
 
         for e in self.entries:
@@ -41,6 +43,9 @@ class TimeEntriesListResult(object):
                 format_duration(e.duration),
                 "" if not e.tags else "".join(e.tags),
             )
+
+        # make footer with total duration visible
+        table.show_footer = True
 
         # turn table into a string using the Console
         console = Console(file=io.StringIO())
@@ -94,16 +99,21 @@ class TimeEntriesGroupByResult(object):
         if not self.entries:
             return "No time entries found."
 
+        # calculate total duration of all entries for the footer
+        total = sum([e[1] for e in self.entries])
+
         table = Table(title="Time Entries", box=box.SIMPLE)
-        table.add_column(self.key_func.name)
-        table.add_column("Duration")
+        table.add_column(self.key_func.name, "Total")
+        table.add_column("Duration", str(format_duration(total)))
 
         for k, g in self.entries:
-            # total_duration = sum([e.duration for e in g if e.duration > 0])
             table.add_row(
                 k,
                 format_duration(g),
             )
+
+        # make footer with total duration visible
+        table.show_footer = True
 
         # turn table into a string using the Console
         console = Console(file=io.StringIO())

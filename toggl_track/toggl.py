@@ -64,6 +64,6 @@ class TimeEntries(object):
         entries = parse_raw_as(List[TimeEntry], resp.text)
         
         if project_ids:
-            return filter(lambda entry: entry.project_id in project_ids, entries)
+            return list(filter(lambda entry: entry.project_id in project_ids, entries))
         
         return entries

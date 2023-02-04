@@ -11,7 +11,7 @@ env = {
 
 @pytest.mark.vcr
 @pytest.mark.block_network
-def test_group_by_tags():
+def test_group_by_tags(save_to_tmp):
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(
@@ -19,6 +19,7 @@ def test_group_by_tags():
             ["entries", "group-by", "--field", "tags", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
             env=env,
         )
+        save_to_tmp(result.output, name="test_group_by_tags")
         assert result.exit_code == 0
         assert (
             result.output
@@ -31,6 +32,8 @@ def test_group_by_tags():
   type:sync      3:00      
   type:meeting   2:04      
   type:goal      0:35      
+ ───────────────────────── 
+  Total          16:39     
                            
 
 """
@@ -39,7 +42,7 @@ def test_group_by_tags():
 
 @pytest.mark.vcr
 @pytest.mark.block_network
-def test_group_by_tags_and_filter():
+def test_group_by_tags_and_filter(save_to_tmp):
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(
@@ -47,6 +50,7 @@ def test_group_by_tags_and_filter():
             ["entries", "--project-id", "178435728", "group-by", "--field", "tags", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
             env=env,
         )
+        save_to_tmp(result.output, name="test_group_by_tags_and_filter")
         assert result.exit_code == 0
         assert (
             result.output
@@ -58,6 +62,8 @@ def test_group_by_tags_and_filter():
   type:sync      3:00      
   type:meeting   2:04      
   type:goal      0:35      
+ ───────────────────────── 
+  Total          11:24     
                            
 
 """

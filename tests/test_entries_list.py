@@ -12,7 +12,7 @@ env = {
 
 @pytest.mark.vcr
 @pytest.mark.block_network
-def test_list():
+def test_list(save_to_tmp):
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(
@@ -20,6 +20,7 @@ def test_list():
             ["entries", "list", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
             env=env,
         )
+        save_to_tmp(result.output, name="test_list")
         assert result.exit_code == 0
         assert (
             result.output
@@ -96,6 +97,8 @@ def test_list():
   2023-01-26   toggl-track:      05:11 AM   06:06 AM   0:54                     
                list time                                                        
                entries                                                          
+ ────────────────────────────────────────────────────────────────────────────── 
+                                            Total      16:39                    
                                                                                 
 
 """

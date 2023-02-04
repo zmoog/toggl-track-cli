@@ -35,5 +35,7 @@ def test_empty_timeentrieslistresult_as_str(save_to_tmp):
   At           Description   Start      Stop       Duration   Tags          
  ────────────────────────────────────────────────────────────────────────── 
   2021-01-25   community:    11:04 PM   11:27 PM   0:22       type:support  
+ ────────────────────────────────────────────────────────────────────────── 
+                                        Total      0:22                     
                                                                             
 """

@@ -9,6 +9,7 @@ from typing import List
 
 
 class TimeEntry(BaseModel):
+    """TimeEntry model."""
     id: int
     workspace_id: int
     user_id: int
@@ -22,6 +23,10 @@ class TimeEntry(BaseModel):
     duration: int
     tags: Optional[List[str]]
 
+    @property
+    def initiative(self) -> str:
+        """Returns the initiative part of the description."""
+        return self.description.split(":")[0]
 
 class TimeEntries(object):
     """TimeEntries API client."""

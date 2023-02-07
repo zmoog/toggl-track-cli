@@ -1,4 +1,5 @@
 import io
+import json
 import datetime as dt
 from itertools import groupby
 from typing import Any, List
@@ -71,7 +72,7 @@ class GroupByCriterion(object):
         return v
 
 class TimeEntriesGroupByResult(object):
-    """MISSING DOCSTRING"""
+    """Turns a list of TimeEntry objects into a rich table grouped by a criterion."""
 
     def __init__(self, entries: List[TimeEntry], key_func: GroupByCriterion) -> None:
         self.key_func = key_func
@@ -120,6 +121,17 @@ class TimeEntriesGroupByResult(object):
         console.print(table)
 
         return console.file.getvalue()
+
+    def ndjson(self) -> str:
+        """Returns a newline-delimited JSON string."""
+        return "\n".join([json.dumps({"field": self.key_func.name, "name": k, "duration": v}) for k, v in self.entries])
+
+
+def render(result: Any, format: str = "text") -> str:
+    """Renders a result object as a string."""
+    if format == "ndjson":
+        return result.ndjson()
+    return str(result)
 
 
 def format_duration(duration: int) -> str:

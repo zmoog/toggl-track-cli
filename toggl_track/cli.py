@@ -4,7 +4,7 @@ from typing import List
 import click
 
 from .toggl import TimeEntries
-from .result import TimeEntriesListResult, TimeEntriesGroupByResult, GroupByCriterion
+from .result import TimeEntriesListResult, TimeEntriesGroupByResult, GroupByCriterion, render
 
 
 # default reference date for all date options
@@ -21,9 +21,17 @@ def as_str(reference_date: dt.datetime = now) -> str:
 
 @click.group()
 @click.version_option()
-def cli():
+@click.option(
+    "--format",
+    type=click.Choice(['text', 'ndjson'],
+    case_sensitive=False),
+    default="text",
+)
+@click.pass_context
+def cli(ctx: click.Context, format: str):
     "CLI tool and Python library to access Toggl Track https://toggl.com/track/"
-
+    ctx.ensure_object(dict)
+    ctx.obj['format'] = format
 
 @cli.group()
 @click.option(
@@ -57,8 +65,11 @@ def list_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.datet
     client = TimeEntries.from_environment()
 
     click.echo(
-        TimeEntriesListResult(
-            client.list(start_date, end_date, project_ids=ctx.obj['project_id'])
+        render(
+            TimeEntriesListResult(
+                client.list(start_date, end_date, project_ids=ctx.obj['project_id'])
+            ),
+            format=ctx.obj['format']
         )
     )
 
@@ -86,8 +97,11 @@ def group_by_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.d
     client = TimeEntries.from_environment()
 
     click.echo(
-        TimeEntriesGroupByResult(
-            client.list(start_date, end_date, project_ids=ctx.obj['project_id']),
-            key_func=GroupByCriterion(field)
+        render(
+            TimeEntriesGroupByResult(
+                client.list(start_date, end_date, project_ids=ctx.obj['project_id']),
+                key_func=GroupByCriterion(field)
+            ),
+            format=ctx.obj['format']
         )
     )

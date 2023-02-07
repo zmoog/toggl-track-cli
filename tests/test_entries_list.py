@@ -174,3 +174,35 @@ def test_list_with_a_running_time_entry(save_to_tmp):
 """
         )
         
+
+@pytest.mark.vcr
+@pytest.mark.block_network
+def test_list_as_ndjson(save_to_tmp):
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(
+            cli,
+            ["--format", "ndjson", "entries", "--project-id", "178435728", "list", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
+            env=env,
+        )
+        save_to_tmp(result.output, name="test_list_as_ndjson")
+        assert result.exit_code == 0
+        assert (
+            result.output
+            == """{"id": 2819125097, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T22:54:33+00:00", "description": "Community: Allow parsing of IPv6 addresses in ingest pipeline", "start": "2023-01-26T22:25:35+00:00", "stop": "2023-01-26T22:54:33+00:00", "duration": 1738, "tags": ["type:support"]}
+{"id": 2819082262, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T22:25:35+00:00", "description": "Community: Fix parsing error client port is blank and adjust for timeStamp", "start": "2023-01-26T21:45:11+00:00", "stop": "2023-01-26T22:25:35+00:00", "duration": 2424, "tags": ["type:support"]}
+{"id": 2819082247, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-02-03T07:46:39+00:00", "description": "Community: Fix parsing error client port is blank and adjust for timeStamp", "start": "2023-01-26T21:45:10+00:00", "stop": "2023-01-26T21:45:11+00:00", "duration": 1, "tags": ["type:support"]}
+{"id": 2819082217, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-02-03T07:46:39+00:00", "description": "Community: Fix parsing error client port is blank and adjust for timeStamp", "start": "2023-01-26T21:45:08+00:00", "stop": "2023-01-26T21:45:10+00:00", "duration": 2, "tags": ["type:support"]}
+{"id": 2819003151, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T21:45:09+00:00", "description": "Community: Azure Signin Module authentication_processing_details Issue", "start": "2023-01-26T20:39:47+00:00", "stop": "2023-01-26T21:45:09+00:00", "duration": 3922, "tags": ["type:support"]}
+{"id": 2818714203, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T18:58:23+00:00", "description": "Community: Azure Signin Module authentication_processing_details Issue", "start": "2023-01-26T17:13:25+00:00", "stop": "2023-01-26T18:58:23+00:00", "duration": 6298, "tags": ["type:support"]}
+{"id": 2818566057, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T16:48:22+00:00", "description": "Community: Azure Signin Module authentication_processing_details Issue", "start": "2023-01-26T15:55:39+00:00", "stop": "2023-01-26T16:48:22+00:00", "duration": 3163, "tags": ["type:support"]}
+{"id": 2818549545, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T15:55:39+00:00", "description": "Drop header log line in CloudFront events", "start": "2023-01-26T15:47:14+00:00", "stop": "2023-01-26T15:55:39+00:00", "duration": 505, "tags": ["type:support"]}
+{"id": 2818461010, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T15:47:14+00:00", "description": "ElasticOnAzure: questions from Deniz Coskun", "start": "2023-01-26T15:03:41+00:00", "stop": "2023-01-26T15:47:14+00:00", "duration": 2613, "tags": ["type:support"]}
+{"id": 2818271775, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T14:30:36+00:00", "description": "Cloud Monitoring - Weekly", "start": "2023-01-26T13:01:35+00:00", "stop": "2023-01-26T14:30:36+00:00", "duration": 5341, "tags": ["type:meeting"]}
+{"id": 2818128524, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T12:35:31+00:00", "description": "sync", "start": "2023-01-26T12:06:40+00:00", "stop": "2023-01-26T12:35:31+00:00", "duration": 1731, "tags": ["type:sync"]}
+{"id": 2818075670, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T12:06:40+00:00", "description": "gather town", "start": "2023-01-26T11:31:30+00:00", "stop": "2023-01-26T12:06:40+00:00", "duration": 2110, "tags": ["type:meeting"]}
+{"id": 2818022697, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T11:31:31+00:00", "description": "azure2: follow up", "start": "2023-01-26T10:55:58+00:00", "stop": "2023-01-26T11:31:31+00:00", "duration": 2133, "tags": ["type:goal"]}
+{"id": 2817783218, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-01-26T10:55:58+00:00", "description": "sync", "start": "2023-01-26T08:24:19+00:00", "stop": "2023-01-26T10:55:58+00:00", "duration": 9099, "tags": ["type:sync"]}
+"""
+        )
+        

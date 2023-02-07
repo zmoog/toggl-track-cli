@@ -1,0 +1,81 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.track.toggl.com/api/v9/me/time_entries?start_date=2023-01-26T00%3A00%3A00Z&end_date=2023-01-27T00%3A00%3A00Z
+  response:
+    body:
+      string: !!binary |
+        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
+        D9vYjAa98d5Ynt5ziAsa/zHNvP0bd0fgfDIhAAA=
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 07 Feb 2023 05:26:12 GMT
+      Instance:
+      - time-public-api
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 google
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-ID:
+      - dd0d87870fbc46bc714cffb130004d03
+      X-Service-Level:
+      - GREEN
+      X-Toggl-Request-Id:
+      - dd0d87870fbc46bc714cffb130004d03
+      X-We-are-hiring:
+      - https://toggl.com/jobs/
+    status:
+      code: 200
+      message: OK
+version: 1

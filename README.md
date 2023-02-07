@@ -55,6 +55,14 @@ Now you can also filter time entries by project ID:
     ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
                                                                                                         Total      7:05
 
+Supports NDJSON as alternative output format using the  `--format` option:
+
+    $ tgl --format ndjson entries --project-id 178435728 list
+
+    {"id": 2832493940, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-02-06T10:31:24+00:00", "description": "ESF: send after input has output", "start": "2023-02-06T09:40:10+00:00", "stop": "2023-02-06T10:31:24+00:00", "duration": 3074, "tags": ["type:goal"]}
+    {"id": 2832473617, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-02-06T09:34:53+00:00", "description": "Maurizio / Tom", "start": "2023-02-06T08:58:17+00:00", "stop": "2023-02-06T09:29:22+00:00", "duration": 1865, "tags": ["type:meeting"]}
+    {"id": 2832337954, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-02-06T09:34:39+00:00", "description": "sync", "start": "2023-02-06T08:15:08+00:00", "stop": "2023-02-06T08:57:17+00:00", "duration": 2529, "tags": ["type:sync"]}
+
 For grouping time entries by tags and sum up the totals, run:
 
     $ tgl entries --project-id 178435728 group-by --field tags --start-date 2023-02-01

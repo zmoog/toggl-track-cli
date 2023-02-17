@@ -55,7 +55,16 @@ Now you can also filter time entries by project ID:
     ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
                                                                                                         Total      7:05
 
-Supports NDJSON as alternative output format using the  `--format` option:
+Supports JSON and NDJSON as alternative output format using the  `--format` option:
+
+    # format result as a list of objects
+    $ tgl --format ndjson entries --project-id 178435728 list
+
+    [{"id": 2848841800, "workspace_id": 1815018, "user_id": 2621333, "project_id": 178435728, "task_id": null, "billable": false, "at": "2023-02-16T15:54:40+00:00", "description": "Observability Demo Day",  ... "stop": "2023-02-16T06:59:01+00:00", "duration": 314, "tags": ["type:goal"]}]
+
+    # optionally, format result as a root element that contains the list of objects using the `--json-root` option
+    $ tgl --format ndjson --json-root entries entries --project-id 178435728 list
+
 
     $ tgl --format ndjson entries --project-id 178435728 list
 

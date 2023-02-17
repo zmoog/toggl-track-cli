@@ -126,3 +126,22 @@ def test_group_by_initiative_as_ndjson(save_to_tmp):
 {"field": "initiative", "name": "Drop header log line in CloudFront events", "duration": 505}
 """
         )
+
+
+@pytest.mark.vcr
+@pytest.mark.block_network
+def test_group_by_initiative_as_json_with_root_element(save_to_tmp):
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(
+            cli,
+            ["--format", "json", "--json-root", "entries-by-tags", "entries", "--project-id", "178435728", "group-by", "--field", "tags", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
+            env=env,
+        )
+        save_to_tmp(result.output, name="test_group_by_initiative_as_json_with_root_element")
+        assert result.exit_code == 0
+        assert (
+            result.output
+            == """{"entries-by-tags": [["type:support", 20666], ["type:sync", 10830], ["type:meeting", 7451], ["type:goal", 2133]]}
+"""
+        )

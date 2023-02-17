@@ -4,6 +4,7 @@ import datetime as dt
 from itertools import groupby
 from typing import Any, List
 
+from pydantic.json import pydantic_encoder
 from rich import box
 from rich.console import Console
 from rich.table import Table
@@ -54,6 +55,15 @@ class TimeEntriesListResult(object):
 
         return console.file.getvalue()
 
+    def json(self, root: str = None) -> str:
+        """Returns a JSON string."""
+        if root:
+            result = {root: self.entries}
+        else:
+            result = self.entries
+        
+        return json.dumps(result, default=pydantic_encoder)
+        
     def ndjson(self) -> str:
         """Returns a newline-delimited JSON string."""
         return "\n".join([e.json() for e in self.entries])
@@ -122,13 +132,23 @@ class TimeEntriesGroupByResult(object):
 
         return console.file.getvalue()
 
+    def json(self, root: str = None) -> str:
+        """Returns a JSON string."""
+        if root:
+            result = {root: self.entries}
+        else:
+            result = self.entries
+        return json.dumps(result)
+
     def ndjson(self) -> str:
         """Returns a newline-delimited JSON string."""
         return "\n".join([json.dumps({"field": self.key_func.name, "name": k, "duration": v}) for k, v in self.entries])
 
 
-def render(result: Any, format: str = "text") -> str:
+def render(result: Any, format: str = "text", json_root: str = None) -> str:
     """Renders a result object as a string."""
+    if format == "json":
+        return result.json(root=json_root)
     if format == "ndjson":
         return result.ndjson()
     return str(result)

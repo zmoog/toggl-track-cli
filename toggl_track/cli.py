@@ -23,15 +23,20 @@ def as_str(reference_date: dt.datetime = now) -> str:
 @click.version_option()
 @click.option(
     "--format",
-    type=click.Choice(['text', 'ndjson'],
+    type=click.Choice(['json', 'ndjson', 'text'],
     case_sensitive=False),
     default="text",
 )
+@click.option(
+    "--json-root",
+    default=None,
+)
 @click.pass_context
-def cli(ctx: click.Context, format: str):
+def cli(ctx: click.Context, format: str, json_root: str):
     "CLI tool and Python library to access Toggl Track https://toggl.com/track/"
     ctx.ensure_object(dict)
     ctx.obj['format'] = format
+    ctx.obj['json_root'] = json_root
 
 @cli.group()
 @click.option(
@@ -69,7 +74,8 @@ def list_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.datet
             TimeEntriesListResult(
                 client.list(start_date, end_date, project_ids=ctx.obj['project_id'])
             ),
-            format=ctx.obj['format']
+            format=ctx.obj['format'],
+            json_root=ctx.obj['json_root'],
         )
     )
 
@@ -102,6 +108,8 @@ def group_by_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.d
                 client.list(start_date, end_date, project_ids=ctx.obj['project_id']),
                 key_func=GroupByCriterion(field)
             ),
-            format=ctx.obj['format']
-        )
+            format=ctx.obj['format'],
+            json_root=ctx.obj['json_root'],
+        ),
+        nl=True,  # add a newline at the end of the output
     )

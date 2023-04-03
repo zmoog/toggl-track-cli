@@ -2,7 +2,7 @@ import io
 import json
 import datetime as dt
 from itertools import groupby
-from typing import Any, List
+from typing import Any, Iterator, List
 
 from pydantic.json import pydantic_encoder
 from rich import box
@@ -13,10 +13,10 @@ from .toggl import TimeEntry
 
 
 class TimeEntriesListResult(object):
-    """Turns a list of TimeEntry objects into a rich table"""
+    """Turns a TimeEntry iterator into a rich table"""
 
-    def __init__(self, entries: List[TimeEntry]) -> None:
-        self.entries = entries
+    def __init__(self, entries: Iterator[TimeEntry]) -> None:
+        self.entries = list(entries)  # we iterate over the entries twice
 
     def __str__(self) -> str:
         """Returns a rich table as a string."""
@@ -82,9 +82,9 @@ class GroupByCriterion(object):
         return v
 
 class TimeEntriesGroupByResult(object):
-    """Turns a list of TimeEntry objects into a rich table grouped by a criterion."""
+    """Turns a TimeEntry iterator into a rich table grouped by a criterion."""
 
-    def __init__(self, entries: List[TimeEntry], key_func: GroupByCriterion) -> None:
+    def __init__(self, entries: Iterator[TimeEntry], key_func: GroupByCriterion) -> None:
         self.key_func = key_func
 
         # group entries by key_func

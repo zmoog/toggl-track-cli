@@ -40,14 +40,20 @@ def cli(ctx: click.Context, format: str, json_root: str):
 
 @cli.group()
 @click.option(
+    '--description',
+    '-d',
+    type=click.STRING,
+    multiple=False)
+@click.option(
     '--project-id',
     '-p',
     type=click.INT,
     multiple=True)
 @click.pass_context
-def entries(ctx: click.Context, project_id: List[int]):
+def entries(ctx: click.Context, description: List[str], project_id: List[int]):
     "Time entries commands"
     ctx.ensure_object(dict)
+    ctx.obj['description'] = description
     ctx.obj['project_id'] = project_id
 
 
@@ -72,7 +78,7 @@ def list_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.datet
     click.echo(
         render(
             TimeEntriesListResult(
-                client.list(start_date, end_date, project_ids=ctx.obj['project_id'])
+                client.list(start_date, end_date, project_ids=ctx.obj['project_id'], description=ctx.obj['description'])
             ),
             format=ctx.obj['format'],
             json_root=ctx.obj['json_root'],
@@ -105,7 +111,7 @@ def group_by_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.d
     click.echo(
         render(
             TimeEntriesGroupByResult(
-                client.list(start_date, end_date, project_ids=ctx.obj['project_id']),
+                client.list(start_date, end_date, project_ids=ctx.obj['project_id'], description=ctx.obj['description']),
                 key_func=GroupByCriterion(field)
             ),
             format=ctx.obj['format'],

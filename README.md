@@ -37,7 +37,7 @@ For listing the time entries in the last 24 hours, run:
     ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
                                                                                                         Total      13:08
 
-Now you can also filter time entries by project ID:
+Now you can also filter time entries by project ID or description:
 
     $ tgl entries --project-id 178435728 list
                                                                 Time Entries
@@ -54,6 +54,32 @@ Now you can also filter time entries by project ID:
     2023-02-03   sync                                                                         08:37 AM   09:25 AM   0:48       type:sync
     ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
                                                                                                         Total      7:05
+
+    $ tgl entries --description SDH list
+
+                                Time Entries                                
+                                                                                
+    At           Description   Start      Stop       Duration   Tags          
+    ────────────────────────────────────────────────────────────────────────── 
+    2023-04-01   SDH 3256      05:56 AM   07:01 AM   1:04       type:support  
+    2023-03-31   SDH 3256      03:01 PM   04:18 PM   1:17       type:support  
+    2023-03-31   SDH 3247      09:45 AM   12:04 PM   2:18       type:support  
+    2023-03-31   SDH 3253      08:49 AM   09:45 AM   0:56       type:support  
+    2023-03-31   SDH 3237      07:22 AM   08:30 AM   1:08       type:support  
+    2023-03-30   SDH 3229      01:16 PM   05:35 PM   4:18       type:support  
+    2023-03-30   SDH 3229      09:36 AM   11:31 AM   1:55       type:support  
+    2023-04-03   SDH 3140      08:11 AM   09:19 AM   1:07       type:support  
+    2023-03-29   SDH 3149      01:36 PM   05:04 PM   3:27       type:support  
+    2023-03-28   SDH 3237      05:04 PM   06:03 PM   0:58       type:support  
+    2023-03-28   SDH 3237      02:40 PM   03:01 PM   0:20       type:support  
+    2023-03-28   SDH 3237      01:43 PM   02:21 PM   0:38       type:support  
+    2023-03-28   SDH 3237      10:31 AM   12:17 PM   1:46       type:support  
+    2023-03-27   SDH 3069      08:50 PM   09:29 PM   0:39       type:support  
+    2023-03-27   SDH 3069      05:51 PM   06:56 PM   1:05       type:support  
+    2023-03-27   SDH 3069      04:59 PM   05:21 PM   0:21       type:support  
+    2023-03-27   SDH 3069      01:11 PM   03:09 PM   1:57       type:support  
+    ──────────────────────────────────────────────────────────────────────────
+                                            Total      25:22
 
 Supports JSON and NDJSON as alternative output format using the  `--format` option:
 

@@ -1,11 +1,10 @@
 import os
 import urllib
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, Iterator, List
 
 import requests
 from pydantic import BaseModel, parse_raw_as
-from typing import List
 
 
 class TimeEntry(BaseModel):
@@ -44,7 +43,7 @@ class TimeEntries(object):
             )
         return cls(api_token=os.environ["TOGGL_API_TOKEN"])
 
-    def list(self, start_date: datetime, end_date: datetime, project_ids: List[int] = ()) -> List[TimeEntry]:
+    def list(self, start_date: datetime, end_date: datetime, description: str = None, project_ids: List[int] = []) -> Iterator[TimeEntry]:
         """Fetches the time entries between `start_date` and `end_date` dates.
         
         Time Entries API v9
@@ -67,8 +66,11 @@ class TimeEntries(object):
         # it looks like the API doesn't support filtering, so I suppose
         # we have to do it ourselves
         entries = parse_raw_as(List[TimeEntry], resp.text)
-        
+
+        if description:
+            entries = filter(lambda entry: description in entry.initiative, entries)
+
         if project_ids:
-            return list(filter(lambda entry: entry.project_id in project_ids, entries))
+            entries = filter(lambda entry: entry.project_id in project_ids, entries)
         
         return entries

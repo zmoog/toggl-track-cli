@@ -11,6 +11,38 @@ env = {
 
 @pytest.mark.vcr
 @pytest.mark.block_network
+def test_list_filter_by_description(save_to_tmp):
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(
+            cli,
+            ["entries", "--description", "toggl-track", "list", "--start-date", "2023-01-26", "--end-date", "2023-01-27"],
+            env=env,
+        )
+        save_to_tmp(result.output, name="test_list_filter_by_description")
+        assert result.exit_code == 0
+        assert (
+            result.output
+            == """                                  Time Entries                                  
+                                                                                
+  At           Description               Start      Stop       Duration   Tags  
+ ────────────────────────────────────────────────────────────────────────────── 
+  2023-01-26   toggl-track: list time    07:28 AM   08:08 AM   0:39             
+               entries                                                          
+  2023-01-26   toggl-track: list time    06:48 AM   07:17 AM   0:28             
+               entries                                                          
+  2023-01-26   toggl-track: list time    05:11 AM   06:06 AM   0:54             
+               entries                                                          
+ ────────────────────────────────────────────────────────────────────────────── 
+                                                    Total      2:02             
+                                                                                
+
+"""
+        )
+        
+
+@pytest.mark.vcr
+@pytest.mark.block_network
 def test_list(save_to_tmp):
     runner = CliRunner()
     with runner.isolated_filesystem():

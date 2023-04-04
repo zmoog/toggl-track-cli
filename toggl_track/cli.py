@@ -31,12 +31,19 @@ def as_str(reference_date: dt.datetime = now) -> str:
     "--json-root",
     default=None,
 )
+@click.option(
+    "--api-token",
+    required=True,
+    envvar="TOGGL_API_TOKEN",
+    help="Toggl Track API token. Can also be set using the TOGGL_API_TOKEN environment variable.",
+)
 @click.pass_context
-def cli(ctx: click.Context, format: str, json_root: str):
+def cli(ctx: click.Context, format: str, json_root: str, api_token: str):
     "CLI tool and Python library to access Toggl Track https://toggl.com/track/"
     ctx.ensure_object(dict)
     ctx.obj['format'] = format
     ctx.obj['json_root'] = json_root
+    ctx.obj['api_token'] = api_token
 
 @cli.group()
 @click.option(
@@ -73,7 +80,7 @@ def entries(ctx: click.Context, description: List[str], project_id: List[int]):
 def list_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.datetime):
     """Returns a list of the latest time entries (default: last 24 hours)"""
 
-    client = TimeEntries.from_environment()
+    client = TimeEntries(ctx.obj['api_token'])
 
     click.echo(
         render(
@@ -106,14 +113,16 @@ def list_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.datet
 def group_by_entries(ctx: click.Context, start_date: dt.datetime, end_date: dt.datetime, field: str = "tags"):
     """Returns a list of time entries grouped by a field"""
 
-    client = TimeEntries.from_environment()
+    client = TimeEntries(ctx.obj['api_token'])
 
+    result = TimeEntriesGroupByResult(
+        client.list(start_date, end_date, project_ids=ctx.obj['project_id'], description=ctx.obj['description']),
+        key_func=GroupByCriterion(field)
+    )
+    
     click.echo(
         render(
-            TimeEntriesGroupByResult(
-                client.list(start_date, end_date, project_ids=ctx.obj['project_id'], description=ctx.obj['description']),
-                key_func=GroupByCriterion(field)
-            ),
+            result,
             format=ctx.obj['format'],
             json_root=ctx.obj['json_root'],
         ),

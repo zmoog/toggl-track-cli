@@ -33,15 +33,15 @@ class TimeEntries(object):
     def __init__(self, api_token: str) -> None:
         self.api_token = api_token
 
-    @classmethod
-    def from_environment(cls) -> "TimeEntries":
-        """Creates a new `TimeEntries` instance from the `TOGGL_API_TOKEN` environment variable."""
-        if "TOGGL_API_TOKEN" not in os.environ:
-            raise Exception(
-                "TOGGL_API_TOKEN environment variable not found. "
-                "Please set it to your Toggl Track API token."
-            )
-        return cls(api_token=os.environ["TOGGL_API_TOKEN"])
+    # @classmethod
+    # def from_environment(cls) -> "TimeEntries":
+    #     """Creates a new `TimeEntries` instance from the `TOGGL_API_TOKEN` environment variable."""
+    #     if "TOGGL_API_TOKEN" not in os.environ:
+    #         raise Exception(
+    #             "TOGGL_API_TOKEN environment variable not found. "
+    #             "Please set it to your Toggl Track API token."
+    #         )
+    #     return cls(api_token=os.environ["TOGGL_API_TOKEN"])
 
     def list(self, start_date: datetime, end_date: datetime, description: str = None, project_ids: List[int] = []) -> Iterator[TimeEntry]:
         """Fetches the time entries between `start_date` and `end_date` dates.

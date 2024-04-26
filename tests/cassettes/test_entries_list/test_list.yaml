@@ -9,70 +9,43 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.31.0
     method: GET
-    uri: https://api.track.toggl.com/api/v9/me/time_entries?start_date=2023-01-26T00%3A00%3A00Z&end_date=2023-01-27T00%3A00%3A00Z
+    uri: https://api.track.toggl.com/api/v9/me/time_entries?start_date=2024-02-26T00%3A00%3A00Z&end_date=2024-02-27T00%3A00%3A00Z
   response:
     body:
-      string: !!binary |
-        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
-        D9vYjAa98d5Ynt5ziAsa/zHNvP0bd0fgfDIhAAA=
+      string: '[{"id":3338599469,"workspace_id":1815018,"project_id":28041930,"task_id":null,"billable":false,"start":"2024-02-26T10:03:12+00:00","stop":"2024-02-26T12:07:38+00:00","duration":7466,"description":"Ristrutturazione","tags":[],"tag_ids":[],"duronly":true,"at":"2024-02-26T12:07:39+00:00","server_deleted_at":null,"user_id":2621333,"uid":2621333,"wid":1815018,"pid":28041930,"permissions":null}]'
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Cache-Control:
       - no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0
-      Content-Encoding:
-      - gzip
+      Content-Length:
+      - '392'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 03 Feb 2023 07:48:05 GMT
+      - Fri, 26 Apr 2024 04:47:25 GMT
       Instance:
-      - time-public-api2
+      - track-public-api-proxy-f666f86df-ng2v4
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
       - nginx
       Strict-Transport-Security:
       - max-age=15552000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
       Via:
       - 1.1 google
       X-Content-Type-Options:
       - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-Request-ID:
-      - d37a26641b2eb9d772d2e2ad8364d785
+      - fec1857ad203b22c477f1a1de73c3423
       X-Service-Level:
       - GREEN
       X-Toggl-Request-Id:
-      - d37a26641b2eb9d772d2e2ad8364d785
+      - 920abb6c-acb0-4178-9551-ec71751ac95c
       X-We-are-hiring:
       - https://toggl.com/jobs/
     status:

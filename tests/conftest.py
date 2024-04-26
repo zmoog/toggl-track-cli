@@ -1,7 +1,6 @@
 from typing import Any
 
 import pytest
-from click.testing import Result
 
 
 @pytest.fixture(scope="module")

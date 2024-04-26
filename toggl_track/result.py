@@ -1,6 +1,5 @@
 import io
 import json
-import datetime as dt
 from itertools import groupby
 from typing import Any, Iterator, List
 

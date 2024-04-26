@@ -11,7 +11,7 @@ def test_empty_timeentrieslistresult_as_str():
     assert str(result) == "No time entries found."
 
 
-def test_empty_timeentrieslistresult_as_str(save_to_tmp):
+def test_timeentrieslistresult_as_str(save_to_tmp):
     entries = [TimeEntry(
         id=1,
         workspace_id=1,
@@ -41,7 +41,7 @@ def test_empty_timeentrieslistresult_as_str(save_to_tmp):
 """
 
 
-def test_empty_timeentrieslistresult_as_json(save_to_tmp):
+def test_timeentrieslistresult_as_json(save_to_tmp):
     entries = [TimeEntry(
         id=1,
         workspace_id=1,
@@ -64,7 +64,7 @@ def test_empty_timeentrieslistresult_as_json(save_to_tmp):
     assert json_result == """[{"id": 1, "workspace_id": 1, "user_id": 1, "project_id": 1, "task_id": null, "billable": false, "at": "2021-01-25T00:00:00", "description": "community:", "start": "2021-01-25T23:04:00", "stop": "2021-01-25T23:27:00", "duration": 1379, "tags": ["type:support"]}]"""
 
 
-def test_empty_timeentrieslistresult_as_json_with_root(save_to_tmp):
+def test_timeentrieslistresult_as_json_with_root(save_to_tmp):
     entries = [TimeEntry(
         id=1,
         workspace_id=1,

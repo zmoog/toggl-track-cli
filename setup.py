@@ -35,7 +35,7 @@ setup(
         "click ==8.1.8",
         "pydantic < 2",
         "requests ==2.32.2",
-        "rich == 13.7.1",
+        "rich ==13.9.4",
         ],
     extras_require={
         "test": [

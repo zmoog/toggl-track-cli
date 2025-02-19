@@ -39,7 +39,7 @@ setup(
         ],
     extras_require={
         "test": [
-            "pytest == 7.4.4",
+            "pytest ==8.3.4",
             "pytest-recording ==0.13.2",
             ]
     },

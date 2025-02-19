@@ -32,7 +32,7 @@ setup(
         tgl=toggl_track.cli:cli
     """,
     install_requires=[
-        "click == 8.1.7",
+        "click ==8.1.8",
         "pydantic < 2",
         "requests ==2.32.2",
         "rich == 13.7.1",
